@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura Mágica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background: url('https://www.example.com/tropical-forest.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            color: #fff;
+            background: #5aaf5a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4a8a4a;
+        }
+    </style>
+    <script>
+        function showQuestion(questionNumber) {
+            document.querySelectorAll('.container').forEach(c => c.style.display = 'none');
+            document.getElementById(`question${questionNumber}`).style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div id="question1" class="container">
+        <h2>Você começa sua jornada no Rio de Janeiro, subindo o Pico da Tijuca ao amanhecer para encontrar a primeira pista.</h2>
+        <p>O que você faz primeiro?</p>
+        <button onclick="showQuestion(2)">Procura por uma trilha no mapa</button>
+        <button onclick="showQuestion(3)">Pergunta a um guia local</button>
+        <button onclick="showQuestion(4)">Explora a área ao redor do pico</button>
+        <button onclick="showQuestion(5)">Verifica o livro que encontrou</button>
+    </div>
+
+    <div id="question2" class="container" style="display: none;">
+        <h2>Você encontrou uma trilha no mapa. O que você faz agora?</h2>
+        <button onclick="showQuestion(6)">Segue a trilha imediatamente</button>
+        <button onclick="showQuestion(7)">Marca a trilha no seu GPS</button>
+        <button onclick="showQuestion(8)">Procura por mais informações no livro</button>
+        <button onclick="showQuestion(9)">Consulta um mapa antigo da região</button>
+    </div>
+
+    <div id="question3" class="container" style="display: none;">
+        <h2>O guia local te dá duas opções:</h2>
+        <p>Ele pode te acompanhar até a trilha ou fornecer informações sobre o local.</p>
+        <button onclick="showQuestion(10)">Pede para o guia te acompanhar</button>
+        <button onclick="showQuestion(11)">Pede as informações sobre o local</button>
+        <button onclick="showQuestion(12)">Agradece e segue sozinho</button>
+        <button onclick="showQuestion(13)">Pergunta sobre outras pistas na área</button>
+    </div>
+
+    <div id="question4" class="container" style="display: none;">
+        <h2>Você decidiu explorar a área ao redor do pico. O que você encontra?</h2>
+        <button onclick="showQuestion(14)">Uma caverna misteriosa</button>
+        <button onclick="showQuestion(15)">Um antigo símbolo em uma pedra</button>
+        <button onclick="showQuestion(16)">Uma pista deixada por outros exploradores</button>
+        <button onclick="showQuestion(17)">Uma fonte de água cristalina</button>
+    </div>
+
+    <div id="question5" class="container" style="display: none;">
+        <h2>Você verifica o livro. Ele tem uma nova pista:</h2>
+        <p>O livro menciona um ponto de referência específico no pico.</p>
+        <button onclick="showQuestion(18)">Procura pelo ponto de referência</button>
+        <button onclick="showQuestion(19)">Tenta encontrar outro ponto de referência</button>
+        <button onclick="showQuestion(20)">Volta para verificar outras partes do livro</button>
+        <button onclick="showQuestion(21)">Pergunta a outros exploradores sobre o ponto</button>
+    </div>
+
+
+
+</body>
+</html>
+
+
+
