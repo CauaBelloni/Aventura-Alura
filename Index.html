@@ -1,97 +1,200 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aventura Mágica</title>
+    <title>Aventura Mágica Brasileira</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
             margin: 0;
-            padding: 0;
-            color: #fff;
-            background: url('https://www.example.com/tropical-forest.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
-        .container {
-            margin: 20px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        button {
-            display: block;
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 1em;
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
             color: #fff;
-            background: #5aaf5a;
+            background-color: #007bff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
-            background: #4a8a4a;
+        .button:hover {
+            background-color: #0056b3;
+        }
+        #story {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
         }
     </style>
-    <script>
-        function showQuestion(questionNumber) {
-            document.querySelectorAll('.container').forEach(c => c.style.display = 'none');
-            document.getElementById(`question${questionNumber}`).style.display = 'block';
-        }
-    </script>
 </head>
 <body>
-    <div id="question1" class="container">
-        <h2>Você começa sua jornada no Rio de Janeiro, subindo o Pico da Tijuca ao amanhecer para encontrar a primeira pista.</h2>
-        <p>O que você faz primeiro?</p>
-        <button onclick="showQuestion(2)">Procura por uma trilha no mapa</button>
-        <button onclick="showQuestion(3)">Pergunta a um guia local</button>
-        <button onclick="showQuestion(4)">Explora a área ao redor do pico</button>
-        <button onclick="showQuestion(5)">Verifica o livro que encontrou</button>
-    </div>
+    <h1>Aventura Mágica Brasileira</h1>
+    <div id="story"></div>
 
-    <div id="question2" class="container" style="display: none;">
-        <h2>Você encontrou uma trilha no mapa. O que você faz agora?</h2>
-        <button onclick="showQuestion(6)">Segue a trilha imediatamente</button>
-        <button onclick="showQuestion(7)">Marca a trilha no seu GPS</button>
-        <button onclick="showQuestion(8)">Procura por mais informações no livro</button>
-        <button onclick="showQuestion(9)">Consulta um mapa antigo da região</button>
-    </div>
+    <script>
+        const storyContent = {
+            intro: {
+                text: "Você está na floresta amazônica em busca de um artefato mágico perdido. O que você faz?",
+                options: {
+                    passar: "Seguir pelo caminho da esquerda",
+                    cachoeira: "Ir até a cachoeira",
+                    acampamento: "Montar acampamento",
+                    vila: "Procurar por uma vila"
+                }
+            },
+            passar: {
+                text: "Você segue pelo caminho da esquerda e encontra uma trilha secreta. Ao percorrer a trilha, você encontra um antigo templo coberto de musgo.",
+                options: {
+                    templo: "Entrar no templo",
+                    continuar: "Continuar explorando a trilha",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            cachoeira: {
+                text: "Você chega à cachoeira e descobre um esconderijo atrás dela. Dentro do esconderijo, você encontra uma caixa misteriosa.",
+                options: {
+                    abrir: "Abrir a caixa",
+                    examinar: "Examinar a cachoeira mais de perto",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            acampamento: {
+                text: "Você monta o acampamento e, durante a noite, ouve sons estranhos. Na manhã seguinte, você encontra um mapa antigo próximo ao local do acampamento.",
+                options: {
+                    seguir: "Seguir o mapa",
+                    desmontar: "Desmontar o acampamento e seguir para outro lugar",
+                    investigar: "Investigar os sons estranhos da noite"
+                }
+            },
+            vila: {
+                text: "Você encontra uma vila local. Os habitantes estão dispostos a ajudá-lo, mas pedem que você ajude a resolver um problema local primeiro.",
+                options: {
+                    ajudar: "Ajudar os habitantes",
+                    informar: "Pedir informações sobre o artefato mágico",
+                    seguir: "Seguir sua busca sozinho"
+                }
+            },
+            templo: {
+                text: "Você entra no templo e se depara com um labirinto de salas antigas e enigmáticas. Cada sala parece conter uma pista sobre o artefato mágico.",
+                options: {
+                    direita: "Explorar a sala à direita",
+                    esquerda: "Explorar a sala à esquerda",
+                    voltar: "Voltar para fora do templo"
+                }
+            },
+            caixa: {
+                text: "Você abre a caixa e encontra uma chave antiga e um pergaminho com símbolos misteriosos.",
+                options: {
+                    chave: "Usar a chave em um local ao redor da cachoeira",
+                    pergaminho: "Decifrar o pergaminho",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            mapa: {
+                text: "Você segue o mapa e chega a um antigo altar escondido. No altar, há inscrições que podem indicar a localização do artefato.",
+                options: {
+                    decifrar: "Decifrar as inscrições",
+                    procurar: "Procurar mais ao redor do altar",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            vilaAjudar: {
+                text: "Você ajuda os habitantes da vila a resolver um problema com uma antiga criatura da floresta. Eles, em agradecimento, lhe fornecem informações valiosas sobre o artefato.",
+                options: {
+                    seguir: "Seguir as novas pistas",
+                    ajudar: "Ajudar ainda mais na vila",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            vilaInformacoes: {
+                text: "Você pergunta sobre o artefato mágico e os habitantes revelam que ele está escondido em um local sagrado na floresta.",
+                options: {
+                    sagrado: "Seguir para o local sagrado",
+                    explorar: "Explorar a vila mais",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            temploDireita: {
+                text: "Você explora a sala à direita e encontra um mecanismo antigo que revela um compartimento secreto com uma pista sobre o artefato.",
+                options: {
+                    seguir: "Seguir a nova pista",
+                    explorar: "Explorar outras salas",
+                    voltar: "Voltar para fora do templo"
+                }
+            },
+            temploEsquerda: {
+                text: "Você explora a sala à esquerda e encontra uma biblioteca com livros antigos sobre lendas e mitos da floresta.",
+                options: {
+                    ler: "Ler os livros",
+                    explorar: "Continuar explorando o templo",
+                    voltar: "Voltar para fora do templo"
+                }
+            },
+            caixaChave: {
+                text: "Você usa a chave em um local ao redor da cachoeira e encontra um compartimento escondido com um antigo artefato.",
+                options: {
+                    examinar: "Examinar o artefato",
+                    levar: "Levar o artefato de volta para a vila",
+                    continuar: "Continuar explorando a floresta"
+                }
+            },
+            caixaPergaminho: {
+                text: "Você decifra o pergaminho e encontra instruções sobre a localização do artefato mágico.",
+                options: {
+                    seguir: "Seguir as instruções",
+                    voltar: "Voltar para o ponto inicial",
+                    procurar: "Procurar mais pistas na cachoeira"
+                }
+            },
+            altar: {
+                text: "Você decifra as inscrições no altar e descobre que o artefato está escondido em uma caverna secreta na floresta.",
+                options: {
+                    caverna: "Procurar a caverna secreta",
+                    investigar: "Investigar mais ao redor do altar",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            vilaProblema: {
+                text: "Você ajuda os habitantes com a criatura da floresta. Em agradecimento, eles fornecem um amuleto mágico que pode ajudar em sua busca.",
+                options: {
+                    usar: "Usar o amuleto para procurar o artefato",
+                    explorar: "Explorar a vila mais",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            },
+            caverna: {
+                text: "Você encontra a caverna secreta e dentro dela, há uma série de desafios e enigmas para resolver.",
+                options: {
+                    enfrentar: "Enfrentar os desafios",
+                    procurar: "Procurar por um caminho alternativo",
+                    voltar: "Voltar para o ponto inicial"
+                }
+            }
+        };
 
-    <div id="question3" class="container" style="display: none;">
-        <h2>O guia local te dá duas opções:</h2>
-        <p>Ele pode te acompanhar até a trilha ou fornecer informações sobre o local.</p>
-        <button onclick="showQuestion(10)">Pede para o guia te acompanhar</button>
-        <button onclick="showQuestion(11)">Pede as informações sobre o local</button>
-        <button onclick="showQuestion(12)">Agradece e segue sozinho</button>
-        <button onclick="showQuestion(13)">Pergunta sobre outras pistas na área</button>
-    </div>
+        function renderStory(key) {
+            const story = storyContent[key];
+            let storyText = story.text;
+            let optionsHtml = '';
 
-    <div id="question4" class="container" style="display: none;">
-        <h2>Você decidiu explorar a área ao redor do pico. O que você encontra?</h2>
-        <button onclick="showQuestion(14)">Uma caverna misteriosa</button>
-        <button onclick="showQuestion(15)">Um antigo símbolo em uma pedra</button>
-        <button onclick="showQuestion(16)">Uma pista deixada por outros exploradores</button>
-        <button onclick="showQuestion(17)">Uma fonte de água cristalina</button>
-    </div>
+            for (const [optionKey, optionText] of Object.entries(story.options)) {
+                optionsHtml += `<button class="button" onclick="renderStory('${optionKey}')">${optionText}</button>\n`;
+            }
 
-    <div id="question5" class="container" style="display: none;">
-        <h2>Você verifica o livro. Ele tem uma nova pista:</h2>
-        <p>O livro menciona um ponto de referência específico no pico.</p>
-        <button onclick="showQuestion(18)">Procura pelo ponto de referência</button>
-        <button onclick="showQuestion(19)">Tenta encontrar outro ponto de referência</button>
-        <button onclick="showQuestion(20)">Volta para verificar outras partes do livro</button>
-        <button onclick="showQuestion(21)">Pergunta a outros exploradores sobre o ponto</button>
-    </div>
+            document.getElementById('story').innerHTML = `<p>${storyText}</p>\n${optionsHtml}`;
+        }
 
-
-
+        // Start the adventure
+        renderStory('intro');
+    </script>
 </body>
 </html>
 
