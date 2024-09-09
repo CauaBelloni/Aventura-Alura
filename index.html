@@ -12,6 +12,9 @@
             margin: 0;
             padding: 20px;
         }
+        h1 {
+            color: #007bff;
+        }
         .button {
             display: inline-block;
             margin: 10px;
@@ -33,16 +36,29 @@
             max-width: 800px;
             margin: 0 auto;
         }
+        .image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
     <h1>Aventura Mágica Brasileira</h1>
-    <div id="story"></div>
+    <div id="story" class="container"></div>
 
     <script>
         const storyContent = {
             intro: {
                 text: "Você está na floresta amazônica em busca de um artefato mágico perdido. O que você faz?",
+                image: "https://via.placeholder.com/800x400?text=Floresta+Amaz%C3%B4nica",
                 options: {
                     passar: "Seguir pelo caminho da esquerda",
                     cachoeira: "Ir até a cachoeira",
@@ -52,6 +68,7 @@
             },
             passar: {
                 text: "Você segue pelo caminho da esquerda e encontra uma trilha secreta. Ao percorrer a trilha, você encontra um antigo templo coberto de musgo.",
+                image: "https://via.placeholder.com/800x400?text=Templo+Antigo",
                 options: {
                     templo: "Entrar no templo",
                     continuar: "Continuar explorando a trilha",
@@ -60,6 +77,7 @@
             },
             cachoeira: {
                 text: "Você chega à cachoeira e descobre um esconderijo atrás dela. Dentro do esconderijo, você encontra uma caixa misteriosa.",
+                image: "https://via.placeholder.com/800x400?text=Cachoeira",
                 options: {
                     abrir: "Abrir a caixa",
                     examinar: "Examinar a cachoeira mais de perto",
@@ -68,6 +86,7 @@
             },
             acampamento: {
                 text: "Você monta o acampamento e, durante a noite, ouve sons estranhos. Na manhã seguinte, você encontra um mapa antigo próximo ao local do acampamento.",
+                image: "https://via.placeholder.com/800x400?text=Acampamento",
                 options: {
                     seguir: "Seguir o mapa",
                     desmontar: "Desmontar o acampamento e seguir para outro lugar",
@@ -76,6 +95,7 @@
             },
             vila: {
                 text: "Você encontra uma vila local. Os habitantes estão dispostos a ajudá-lo, mas pedem que você ajude a resolver um problema local primeiro.",
+                image: "https://via.placeholder.com/800x400?text=Vila+Local",
                 options: {
                     ajudar: "Ajudar os habitantes",
                     informar: "Pedir informações sobre o artefato mágico",
@@ -84,6 +104,7 @@
             },
             templo: {
                 text: "Você entra no templo e se depara com um labirinto de salas antigas e enigmáticas. Cada sala parece conter uma pista sobre o artefato mágico.",
+                image: "https://via.placeholder.com/800x400?text=Labirinto+do+Templo",
                 options: {
                     direita: "Explorar a sala à direita",
                     esquerda: "Explorar a sala à esquerda",
@@ -92,6 +113,7 @@
             },
             caixa: {
                 text: "Você abre a caixa e encontra uma chave antiga e um pergaminho com símbolos misteriosos.",
+                image: "https://via.placeholder.com/800x400?text=Caixa+Misteriosa",
                 options: {
                     chave: "Usar a chave em um local ao redor da cachoeira",
                     pergaminho: "Decifrar o pergaminho",
@@ -100,6 +122,7 @@
             },
             mapa: {
                 text: "Você segue o mapa e chega a um antigo altar escondido. No altar, há inscrições que podem indicar a localização do artefato.",
+                image: "https://via.placeholder.com/800x400?text=Altar+Antigo",
                 options: {
                     decifrar: "Decifrar as inscrições",
                     procurar: "Procurar mais ao redor do altar",
@@ -108,6 +131,7 @@
             },
             vilaAjudar: {
                 text: "Você ajuda os habitantes da vila a resolver um problema com uma antiga criatura da floresta. Eles, em agradecimento, lhe fornecem informações valiosas sobre o artefato.",
+                image: "https://via.placeholder.com/800x400?text=Ajuda+na+Vila",
                 options: {
                     seguir: "Seguir as novas pistas",
                     ajudar: "Ajudar ainda mais na vila",
@@ -116,6 +140,7 @@
             },
             vilaInformacoes: {
                 text: "Você pergunta sobre o artefato mágico e os habitantes revelam que ele está escondido em um local sagrado na floresta.",
+                image: "https://via.placeholder.com/800x400?text=Informações+na+Vila",
                 options: {
                     sagrado: "Seguir para o local sagrado",
                     explorar: "Explorar a vila mais",
@@ -124,6 +149,7 @@
             },
             temploDireita: {
                 text: "Você explora a sala à direita e encontra um mecanismo antigo que revela um compartimento secreto com uma pista sobre o artefato.",
+                image: "https://via.placeholder.com/800x400?text=Mecanismo+Antigo",
                 options: {
                     seguir: "Seguir a nova pista",
                     explorar: "Explorar outras salas",
@@ -132,6 +158,7 @@
             },
             temploEsquerda: {
                 text: "Você explora a sala à esquerda e encontra uma biblioteca com livros antigos sobre lendas e mitos da floresta.",
+                image: "https://via.placeholder.com/800x400?text=Biblioteca+Antiga",
                 options: {
                     ler: "Ler os livros",
                     explorar: "Continuar explorando o templo",
@@ -140,6 +167,7 @@
             },
             caixaChave: {
                 text: "Você usa a chave em um local ao redor da cachoeira e encontra um compartimento escondido com um antigo artefato.",
+                image: "https://via.placeholder.com/800x400?text=Artefato+Escondido",
                 options: {
                     examinar: "Examinar o artefato",
                     levar: "Levar o artefato de volta para a vila",
@@ -148,6 +176,7 @@
             },
             caixaPergaminho: {
                 text: "Você decifra o pergaminho e encontra instruções sobre a localização do artefato mágico.",
+                image: "https://via.placeholder.com/800x400?text=Decifrando+Pergaminho",
                 options: {
                     seguir: "Seguir as instruções",
                     voltar: "Voltar para o ponto inicial",
@@ -156,6 +185,7 @@
             },
             altar: {
                 text: "Você decifra as inscrições no altar e descobre que o artefato está escondido em uma caverna secreta na floresta.",
+                image: "https://via.placeholder.com/800x400?text=Inscrições+do+Altar",
                 options: {
                     caverna: "Procurar a caverna secreta",
                     investigar: "Investigar mais ao redor do altar",
@@ -164,6 +194,7 @@
             },
             vilaProblema: {
                 text: "Você ajuda os habitantes com a criatura da floresta. Em agradecimento, eles fornecem um amuleto mágico que pode ajudar em sua busca.",
+                image: "https://via.placeholder.com/800x400?text=Amuleto+Mágico",
                 options: {
                     usar: "Usar o amuleto para procurar o artefato",
                     explorar: "Explorar a vila mais",
@@ -172,10 +203,28 @@
             },
             caverna: {
                 text: "Você encontra a caverna secreta e dentro dela, há uma série de desafios e enigmas para resolver.",
+                image: "https://via.placeholder.com/800x400?text=Caverna+Secreta",
                 options: {
                     enfrentar: "Enfrentar os desafios",
                     procurar: "Procurar por um caminho alternativo",
                     voltar: "Voltar para o ponto inicial"
+                }
+            },
+            cavernaEnigma: {
+                text: "Você enfrenta os desafios na caverna e encontra um enigma final que guarda o artefato. Resolva o enigma para obter o artefato.",
+                image: "https://via.placeholder.com/800x400?text=Enigma+Final",
+                options: {
+                    resolver: "Resolver o enigma",
+                    tentar: "Tentar um caminho alternativo",
+                    voltar: "Voltar para o início da caverna"
+                }
+            },
+            artefato: {
+                text: "Você conseguiu resolver o enigma e encontrou o artefato mágico! Parabéns, você completou a aventura com sucesso!",
+                image: "https://via.placeholder.com/800x400?text=Artefato+Mágico",
+                options: {
+                    reiniciar: "Reiniciar a aventura",
+                    sair: "Sair do jogo"
                 }
             }
         };
@@ -184,6 +233,10 @@
             const story = storyContent[key];
             let storyText = story.text;
             let optionsHtml = '';
+
+            if (story.image) {
+                optionsHtml += `<img src="${story.image}" alt="Imagem da cena" class="image">\n`;
+            }
 
             for (const [optionKey, optionText] of Object.entries(story.options)) {
                 optionsHtml += `<button class="button" onclick="renderStory('${optionKey}')">${optionText}</button>\n`;
